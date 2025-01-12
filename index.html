@@ -75,7 +75,7 @@
     <h1>Wake Lock</h1>
 
     <div id="container">
-        <button id="toggleButton">Enable Wake Lock</button>
+        <button id="toggleButton">Wake Lock Is Active</button>
         <span id="wakeLockStatus">Wake lock is inactive.</span>
     </div>
 
@@ -87,7 +87,7 @@
             try {
                 wakeLock = await navigator.wakeLock.request("screen");
                 isWakeLockActive = true;
-                updateStatus("Wake lock is active.");
+                updateStatus("Enable Wake Lock");
             } catch (err) {
                 console.error("Failed to acquire wake lock:", err);
                 updateStatus("Failed to acquire wake lock.");
