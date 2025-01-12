@@ -72,10 +72,10 @@
     </style>
 </head>
 <body>
-    <h1>Wake Lock</h1>
+    <h1>Wake Lock Example</h1>
 
     <div id="container">
-        <button id="toggleButton">Wake Lock Is Active</button>
+        <button id="toggleButton">Enable Wake Lock</button>
         <span id="wakeLockStatus">Wake lock is inactive.</span>
     </div>
 
@@ -87,7 +87,7 @@
             try {
                 wakeLock = await navigator.wakeLock.request("screen");
                 isWakeLockActive = true;
-                updateStatus("Enable Wake Lock");
+                updateStatus("Wake lock is active.");
             } catch (err) {
                 console.error("Failed to acquire wake lock:", err);
                 updateStatus("Failed to acquire wake lock.");
