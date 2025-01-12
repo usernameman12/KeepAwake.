@@ -13,27 +13,27 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
             height: 100vh;
             color: #333;
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
             color: #4CAF50;
+            margin-bottom: 20px;
         }
 
         #container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
             padding: 15px 25px;
             background-color: #ffffff;
             border: 2px solid #4CAF50;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
             font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            flex-direction: column;
         }
 
         button {
@@ -45,6 +45,7 @@
             cursor: pointer;
             font-size: 14px;
             transition: background-color 0.3s ease;
+            margin-bottom: 10px;
         }
 
         button:hover {
@@ -52,7 +53,6 @@
         }
 
         #wakeLockStatus {
-            margin-left: 15px;
             font-weight: bold;
             color: #333;
         }
@@ -72,7 +72,7 @@
     </style>
 </head>
 <body>
-    <h1>Wake Lock Example</h1>
+    <h1>Wake Lock</h1>
 
     <div id="container">
         <button id="toggleButton">Enable Wake Lock</button>
