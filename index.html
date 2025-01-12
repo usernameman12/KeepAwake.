@@ -3,14 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wake Lock Example</title>
+    <title>Wake Lock</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        #container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: #ffffff;
+            border: 2px solid #4CAF50;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #wakeLockStatus {
+            margin-left: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 600px) {
+            #container {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
+
+            button {
+                padding: 8px 15px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
+    <h1>Wake Lock Example</h1>
+
+    <div id="container">
+        <button id="toggleButton">Enable Wake Lock</button>
+        <span id="wakeLockStatus">Wake lock is inactive.</span>
+    </div>
+
     <script>
         let wakeLock = null;
         let isWakeLockActive = false;
@@ -20,11 +88,6 @@
                 wakeLock = await navigator.wakeLock.request("screen");
                 isWakeLockActive = true;
                 updateStatus("Wake lock is active.");
-
-                wakeLock.addEventListener("release", () => {
-                    isWakeLockActive = false;
-                    updateStatus("Wake lock was released.");
-                });
             } catch (err) {
                 console.error("Failed to acquire wake lock:", err);
                 updateStatus("Failed to acquire wake lock.");
@@ -58,22 +121,7 @@
         document.addEventListener("visibilitychange", handleVisibilityChange);
 
         document.addEventListener("DOMContentLoaded", () => {
-            const container = document.createElement("div");
-            container.style.position = "fixed";
-            container.style.bottom = "10px";
-            container.style.right = "10px";
-            container.style.padding = "10px";
-            container.style.backgroundColor = "#f0f0f0";
-            container.style.border = "1px solid #ccc";
-            container.style.borderRadius = "5px";
-
-            const toggleButton = document.createElement("button");
-            toggleButton.textContent = "Enable Wake Lock";
-            toggleButton.style.marginRight = "10px";
-
-            const statusElement = document.createElement("span");
-            statusElement.id = "wakeLockStatus";
-            statusElement.textContent = "Wake lock is inactive.";
+            const toggleButton = document.getElementById("toggleButton");
 
             toggleButton.addEventListener("click", () => {
                 if (isWakeLockActive) {
@@ -85,10 +133,7 @@
                 }
             });
 
-            container.appendChild(toggleButton);
-            container.appendChild(statusElement);
-            document.body.appendChild(container);
-
+            // Optionally, request wake lock on page load
             requestWakeLock();
         });
 
