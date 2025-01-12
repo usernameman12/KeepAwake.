@@ -72,7 +72,7 @@
     </style>
 </head>
 <body>
-    <h1>Wake Lock</h1>
+    <h1>Wake Lock Example</h1>
 
     <div id="container">
         <button id="toggleButton">Enable Wake Lock</button>
@@ -121,6 +121,9 @@
         document.addEventListener("visibilitychange", handleVisibilityChange);
 
         document.addEventListener("DOMContentLoaded", () => {
+            // Set the initial status message to "Wake lock is inactive."
+            updateStatus("Wake lock is inactive.");
+
             const toggleButton = document.getElementById("toggleButton");
 
             toggleButton.addEventListener("click", () => {
@@ -132,9 +135,6 @@
                     toggleButton.textContent = "Disable Wake Lock";
                 }
             });
-
-            // Optionally, request wake lock on page load
-            requestWakeLock();
         });
 
         window.addEventListener("beforeunload", releaseWakeLock);
